@@ -1,0 +1,43 @@
+###Set the Log Size and static log location as a static value prior to running the script or it will use an 80MB static logsize and default path for the log at C:\Windows\Temp\mylog.log
+###Example
+#With log size and log file path set
+#$logfile = C:\Windows\temp\Awesomelog.log
+#$maxlogfilesize = 1
+#Logit return "This is working awesome!"
+#Without filepath and using default
+#Logit "This is the best logger."
+#With just the filepath set
+#Logit -logfile
+
+Function LogIt
+
+ 
+
+{
+
+ 
+
+   Param ([string]$logstring,$logfile)
+
+   $defaultlogsize = 80
+   
+   if (!$maxlogsize) {$maxlogsize= $defaultlogsize}
+   if (!$logfile) {$logfile= "C:\Windows\Temp\mylog.log"}
+
+    $time =Get-Date
+
+ 
+
+    $logsize = (Get-Item $logfile).length/1MB -ErrorAction SilentlyContinue
+
+ 
+
+if ($logsize -gt $maxlogsizeMB){Clear-Content -path $logfile -filter *.log -force}
+
+ 
+
+   Add-content $Logfile -value "$time - $logstring"
+
+ 
+
+}
