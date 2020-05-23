@@ -17,7 +17,7 @@ Function LogIt
 
  
 
-   Param ([string]$logstring,$logfile)
+   Param ($logdata,$logfile)
 
    $defaultlogsize = 80
    
@@ -36,7 +36,7 @@ if ($logsize -gt $maxlogsizeMB){Clear-Content -path $logfile -filter *.log -forc
 
  
 
-   Add-content $Logfile -value "$time - $logstring"
+   Add-content $Logfile -value "$time - $logdata"
 
  
 
